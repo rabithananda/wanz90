@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hepi aja</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+  <style>
+    .card-image img {
+      height: 200px; 
+      object-fit: cover;
+    }
+    .bold-text {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <h5 class="purple darken-3 white-text z-depth-3"
+  style="margin-top: 0px; padding: 5px; text-align: center;">
+  Pengen Bo
+  </h5>
+
+  <div class="container">
+     <a href="index.html"
+  class="btn waves waves-effect pink" 
+  >kembali</a>
+   <a href="cari.html"
+  class="btn waves waves-effect purple" 
+  >Cari Video</a>
+  </div>
+
+  <div class="container">
+    <div class="card waves waves-effect " style="padding: 5px;">
+      <p class="bold-text">Masukkan / ketik kode atau apapun bebas yg lu mau cari</p>
+      <input type="text" placeholder="input disini">
+      <button id="cari" class="btn waves waves-effect pink">Cari Sekarang</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="q-display"></div>
+  </div>  
+
+  <!-- Container for Cards -->
+  <div id="preloader" style="margin-top:30px">
+    <div style="display: flex;justify-content: center;">
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h6 style="font-weight: bold;text-align: center;">Sedang Mencari Video.....</h6>
+  </div>
+
+  
+  <!-- Container for Cards -->
+  <div>
+    <div class="row" id="cards-container">
+      <!-- Cards will be inserted here dynamically -->
+    </div>
+  </div>
+
+  <!-- Import jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Import Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Tampilkan nilai q di sini -->
+
+  <script>
+
+    // Function to truncate text
+      function truncateText(text, maxLength) {
+        return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+      }
+
+
+    document.getElementById('preloader').style.display = 'none';
+    // Fungsi untuk mengambil nilai q dari URL
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+
+
+    document.getElementById('cari').addEventListener('click', function() {
+      var inputValue = document.querySelector('input[type="text"]').value;
+      if (inputValue) {
+        window.location.href = `/cari.html?q=${encodeURIComponent(inputValue)}`;
+      }
+    });
+
+
+    // Mengambil nilai q dari URL
+    var q = getUrlParameter('q');
+
+    // Menampilkan nilai q di halaman
+    if (q) {
+      document.getElementById('q-display').innerText = 'Hasil Pencarian: ' + q;
+
+      // API key dan URL API
+      const apiUrl = `${cors_any}/https://doodapi.com/api/search/videos?key=${key_api}&search_term=${q}`;
+
+      // Menampilkan preloader
+      document.getElementById('preloader').style.display = 'block';
+
+      // Melakukan request ke API
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 200) {
+            // Menghilangkan preloader
+            document.getElementById('preloader').style.display = 'none';
+
+            // Membuat card untuk setiap hasil
+            data.result.forEach(result => {
+              const cardHtml = `
+                <div class="col s6 m3 l3">
+                  <div class="card waves waves-effect">
+                    <div>
+                      <img style="width:100%" src="${result.single_img}" alt="${result.title}">
+                    </div>
+                    <div class="container">
+                      <span class="pink-text darken-3 bold-text">${truncateText(result.title,40)}</span>
+                    </div>
+                    <div style="display:flex;justify-content:end;margin-top:20px">
+                      <button onclick="openvideo('${result.file_code}')" class="btn waves waves-effect pink">Nonton</button>
+                    </div>
+                  </div>
+                </div>
+              `;
+              document.getElementById('cards-container').innerHTML += cardHtml;
+            });
+          } else {
+            // Menampilkan pesan error jika status tidak 200
+            document.getElementById('preloader').style.display = 'none';
+            Swal.fire({
+              icon: 'error',
+              title: 'Gagal Dapat Video',
+              text: 'Coba Lu Refresh , kalo masih lama loading / error berarti server error tungguin aja ntar di benerin',
+            });
+          }
+        })
+        .catch(error => {
+          // Menampilkan pesan error jika terjadi kesalahan pada request
+          document.getElementById('preloader').style.display = 'none';
+          Swal.fire({
+            icon: 'error',
+            title: 'Gagal Dapat Video',
+            text: 'Coba Lu Refresh , kalo masih lama loading / error berarti server error tungguin aja ntar di benerin',
+          });
+          console.error('Error fetching data:', error);
+        });
+    }
+     function openvideo(code){
+      let random_pilih = direct_click(code)
+    }
+  </script>
+</body>
+</html>

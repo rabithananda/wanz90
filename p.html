@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hepi aja</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="global.css">
+  <script src="config.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+  .overlayads{
+    margin-top: 5px;
+  position: absolute;
+  height: 330px;
+  background-color: red;
+  opacity: 0;
+  width: 100%;
+  z-index: 1000;
+}
+</style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <h5 class="purple darken-3 white-text z-depth-3"
+  style="margin-top: 0px; padding: 5px; text-align: center;">
+  Pengen Bo
+  </h5>
+
+ <div class="container">
+    <a href="index.html"
+  class="btn waves waves-effect pink" 
+  >kembali</a>
+  <a href="cari.html"
+  class="btn waves waves-effect purple" 
+  >Cari Video</a>
+  <a href="chat.html"
+  class="btn waves waves-effect blue" 
+  >Request</a>
+ </div>
+
+
+ <!-- ads -->
+ <div class="overlayads"></div>
+
+  <!-- Iframe -->
+  <iframe id="myIframe" src="" frameborder="0"
+  style="width:100%;height: 330px;margin-top: 10px;"
+  allowfullscreen
+  allowscrolling="no" 
+  ></iframe>
+
+  <div class="container">
+    <p class="red-text bold-text">
+      <span class="red white-text" style="padding: 3px;">Cara Nonton nya </span> : Pastikan Lu Pake Chrome jangan Nonton dari Facebook . Copas aja link nya . copas dan nonton di chrome . atau copas ini 
+      <a href="#" id="myLink" target="_blank" 
+     class="blue-text  darken-3 bold-text" 
+      ></a>
+       kalo udah Kalo lu Play video ke Buka Web Iklan 
+    lu Back aja . tombol back dari Hp Lu Biar Balik lagi ke Web b0cep Ini lagi . Intinya Kalo Kebuka Web Iklan Aneh Aneh Lu Back aja . itu iklan soalnya . biar balik ke web ini lagi . begitu trus sampe bisa lu tonton</p>
+
+
+    <a  target="_blank" id="urldownload"
+    style="width:100%" 
+    class="btn waves waves-effect pink bold-text" 
+    >Download</a>
+    <p class="red-text bold-text">
+      <span class="red white-text" style="padding: 3px;">Cara Download nya nya </span> :
+      Pastikan Video nya bisa ditonton sebelum lu Download.
+    ntar Kena ZONK . dan Lewatin iklan nya kalo berhasil
+  lu masuk halaman Download nya . scroll ke bawah klik tombol Download warna oren </p>
+  </div>
+
+
+  <!-- RELATED -->
+  <div id="preloader" style="margin-top:30px">
+      
+      <div style="display: flex;justify-content: center;">
+        <div  class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <h6 style="font-weight: bold;text-align: center;">Sedang Mencari Video.....</h6>
+    </div>
+
+
+  <div style="margin-top:10px">
+    <div class="container">
+    <h5 class="bold-text">Video Lainnya </h6>
+    </div>
+    <div class="row" id="cards-container">
+      <!-- Cards will be inserted here dynamically -->
+    </div>
+  </div>
+
+  <!-- Import jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Import Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    // Fungsi untuk mengambil nilai id dari URL
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Mengambil nilai id dari URL
+    var id = getUrlParameter('id');
+
+    // Mengganti src dari iframe dengan nilai id
+    if (id) {
+      var iframe = document.getElementById('myIframe');
+      var download_url = document.getElementById('urldownload');
+      iframe.src = "https://d000d.com/e/" + id;
+      download_url.href = shortlink_domain + shortlink_token + shortlink_tujuan + "https://d000d.com/d/" + id;
+    }
+
+      const apiUrl = 'https://doodapi.com/api/file/list';
+
+
+      function togglePreloader(show) {
+        const preloader = document.getElementById('preloader');
+        if (show) {
+          preloader.style.display = 'block';
+        } else {
+          preloader.style.display = 'none';
+        }
+      }
+
+
+       // Function to truncate text
+      function truncateText(text, maxLength) {
+        return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+      }
+
+      // Function to fetch data from API
+      function fetchData(page) {
+        fetch(`${cors_any}/${apiUrl}?key=${key_api}&page=${page}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.msg === "OK") {
+               togglePreloader(false);
+              const files = data.result.files;
+              const container = document.getElementById('cards-container');
+              container.innerHTML = ''; // Clear previous cards
+
+              files.forEach(file => {
+                const truncatedTitle = truncateText(file.title, 40);
+                const cardHtml = `
+                  <div class="col s6 m3 l3">
+                    <div class="card waves waves-effect">
+                      <div >
+                        <img
+                        style="width:100%"
+                         src="${file.single_img}" alt="${file.title}">
+                      </div>
+                      <div class="container">
+                        <span class="pink-text darken-3 bold-text">${truncatedTitle}</span>
+                      </div>
+                      <div style="display:flex;justify-content:end;margin-top:20px">
+                        <button onclick="openvideo('${file.file_code}')" class="btn waves waves-effect pink">Nonton</button>
+                      </div>
+                    </div>
+                  </div>
+                `;
+                container.innerHTML += cardHtml;
+              });
+            }
+          })
+          .catch(error => {
+               togglePreloader(false);
+               Swal.fire({
+              icon: 'error',
+              title: 'Gagal Dapat Video',
+              text: 'Coba Lu Refresh , kalo masih lama loading / error berarti server error tungguin aja ntar di benerin',
+            });
+            console.error('Error fetching data:', error);
+          });
+      }
+
+      // Fetch initial data to get total pages
+      fetch(`${cors_any}/${apiUrl}?key=${key_api}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.msg === "OK") {
+            const totalPages = data.result.total_pages;
+            const randomPage = Math.floor(Math.random() * totalPages) + 1;
+            fetchData(randomPage);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    function openvideo(code){
+      let random_pilih = direct_click(code)
+    }
+
+    // Add this script at the end of your body tag or in a separate script file
+document.addEventListener('DOMContentLoaded', function() {
+  var overlayAds = document.querySelector('.overlayads');
+  var clickCount = 0;
+
+  overlayAds.addEventListener('click', function() {
+    clickCount++;
+    if (clickCount === 4) {
+      overlayAds.style.display = 'none';
+      clickCount = 0
+    }
+    window.open(directlink_url,"_blank")
+  });
+});
+
+  var link = document.getElementById('myLink');
+  link.href = "/p.html?id=" + id  ;
+  link.textContent = window.location.hostname + "/p.html?id=" + id  ;
+  </script>
+
+</body>
+</html>
