@@ -45,11 +45,16 @@
  <!-- ads -->
  <div class="overlayads"></div>
 
+  <div id="loadingframe" style="display: block;">
+    <h6 style="text-align: center;font-weight: bold;">Sabar Sedang Mencari Video Sebentar ....</h6>
+  </div>
+
   <!-- Iframe -->
   <iframe id="myIframe" src="" frameborder="0"
   style="width:100%;height: 330px;margin-top: 10px;"
   allowfullscreen
   allowscrolling="no" 
+  onload="hideLoadingFrame()"
   ></iframe>
 
   <div class="container">
@@ -108,6 +113,13 @@
   <!-- Import Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
+
+
+    function hideLoadingFrame() {
+      const loadingFrame = document.getElementById('loadingframe');
+      loadingFrame.style.display = 'none';
+    }
+
     // Fungsi untuk mengambil nilai id dari URL
     function getUrlParameter(name) {
       name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');

@@ -91,15 +91,22 @@
       }
        // Function to format date
       function formatDate(dateString) {
-        const date = new Date(dateString);
-        const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
-                            "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-        const day = date.getDate();
-        const month = monthNames[date.getMonth()];
-        const year = date.getFullYear();
-        const hours = date.getHours();
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        return `${day} ${month} ${year} jam ${hours}:${minutes}`;
+          const date = new Date(dateString);
+          const currentDate = new Date();
+          const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                              "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+          const day = date.getDate();
+          const month = monthNames[date.getMonth()];
+          const year = date.getFullYear();
+          const hours = date.getHours() + 7; // Mengkonversi ke WIB (UTC+7)
+          const minutes = date.getMinutes().toString().padStart(2, '0');
+
+          // Menambahkan "jam yg lalu" jika tanggal adalah hari ini
+          if (year === currentDate.getFullYear() && month === monthNames[currentDate.getMonth()] && day === currentDate.getDate()) {
+              return `${day} ${month} ${year} - ${hours} jam yg lalu`;
+          } else {
+              return `${day} ${month} ${year} jam ${hours}:${minutes}`;
+          }
       }
 
       // Function to fetch data from API
@@ -135,6 +142,15 @@
                         </a>
                         <br/>
                          <span class="bold-text">${formattedDate}</span>
+                         <br/>
+                         <div 
+                         style="margin-top:20px;"
+                         >
+                           <a class="btn waves waves-effect pink"
+                           target="_blank"
+                           href="${'/p.html?id=' + file.file_code}"
+                           >Nonton</a>
+                         </div>
                       </div>
                       </div>
                     </div>
