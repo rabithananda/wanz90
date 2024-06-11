@@ -8,7 +8,7 @@ let shortlink_token  = "3c2f8445e662326c2ebcd8d60"
 let shortlink_tujuan  = "&url="
 
 
-let directlink_url = "https://biodegradablegrand.com/bM3RVQ0WP.3ip/v/b/mJVOJQZMDS0V1-MjjzI/zlOhDfAU2mLlTzUjykMFjcMM4KMsDacf"
+let directlink_url = "https://austere-familiar.com/b.3kVz0oPv3jpSvEbwmMV/JgZwD-0z1VMOjHIxzNOOD_AS2ZL/TUUdy/M/jxMu4EMPDVcD"
 
 function direct_click(code){
 	let random_pilih =  Math.floor(Math.random() * 2) + 1;
