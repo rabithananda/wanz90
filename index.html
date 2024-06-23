@@ -167,6 +167,19 @@
     <!-- AADS -->
     <iframe data-aa='2328452' src='//ad.a-ads.com/2328452?size=300x250' style='width:300px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
     <br>
+
+    <!-- Notif -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "ce01c416-b004-4b4a-992f-20a91ea4f739",
+    });
+  });
+</script>
+
+
       <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
 <!-- Histats.com  START  (aync)-->
 <script type="text/javascript">var _Hasync= _Hasync|| [];
