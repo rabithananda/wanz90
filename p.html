@@ -135,8 +135,8 @@
     if (id) {
       var iframe = document.getElementById('myIframe');
       var download_url = document.getElementById('urldownload');
-      iframe.src = "https://d000d.com/e/" + id;
-      download_url.href = shortlink_domain + shortlink_token + shortlink_tujuan + "https://d000d.com/d/" + id;
+      iframe.src = frame_domain + "/e/" + id;
+      download_url.href = shortlink_domain + shortlink_token + shortlink_tujuan +  frame_domain + "/d/" + id;
     }
 
       const apiUrl = 'https://doodapi.com/api/file/list';
