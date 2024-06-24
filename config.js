@@ -1,7 +1,7 @@
 let key_api = "219725bbkborbourrp2cd4"
 let cors_any   = "https://bobwatcherx-corsanywhere3.hf.space"
 
-let frame_domain = "https://d000d.com"
+let frame_domain = "https://d0000d.com"
 
 let shortlink_domain  = "https://cuty.io/quick?token="
 let shortlink_token  = "3c2f8445e662326c2ebcd8d60"
