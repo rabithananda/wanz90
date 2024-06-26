@@ -8,7 +8,7 @@ let shortlink_token  = "3c2f8445e662326c2ebcd8d60"
 let shortlink_tujuan  = "&url="
 
 
-let directlink_url = "https://flowerdicks.com/in/p/?spot_id=826042&cat=25&sub_id=513297734"
+let directlink_url = "https://www.highrevenuenetwork.com/iapzge041?key=d4ac38985cd3bf7add370e11f8712276"
 
 function direct_click(code){
 	let random_pilih =  Math.floor(Math.random() * 2) + 1;
