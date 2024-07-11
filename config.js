@@ -8,7 +8,7 @@ let shortlink_token  = "3c2f8445e662326c2ebcd8d60"
 let shortlink_tujuan  = "&url="
 
 
-let directlink_url = "https://richtomatos.com/in/p?spot_id=836488&cat=25&sub_id=64215837"
+let directlink_url = "https://darkbananas.com/in/p/?spot_id=830736&cat=25&sub_id=1246634411"
 
 
 function direct_click(code){
