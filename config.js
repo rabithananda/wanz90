@@ -12,10 +12,6 @@ let directlink_url = "https://darkbananas.com/in/p/?spot_id=830736&cat=25&sub_id
 
 
 function direct_click(code){
-	let random_pilih =  Math.floor(Math.random() * 2) + 1;
-	if(random_pilih === 2){
-		window.open(directlink_url,'_blank')
-	}else{
-		window.location.href = `/p.html?id=${code}`
-	}
+	window.location.href = `/p.html?id=${code}`
+	
 }
