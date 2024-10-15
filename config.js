@@ -172,5 +172,5 @@ function Toast_shopee(){
 
 document.addEventListener("DOMContentLoaded", function() {
     Popunder_shopee();
-    Toast_shopee();
+    
 });
