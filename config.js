@@ -1,5 +1,5 @@
 let key_api = "219725bbkborbourrp2cd4"
-let cors_any   = "https://bobwatcherx-corsanywhere3.hf.space"
+let cors_any   = "https://darenx-corsanywhere3.hf.space"
 
 let frame_domain = "https://dood.li"
 
