@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Download video</title>
+	 <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="global.css">
+  <script src="config.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+   <script src="config.js"></script>
+   <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+   <script src="js/jejakmu.js"></script>
+
+</head>
+<body>
+	<div class="card" style="margin-top: 30%">
+		<h5 class="center-align bold-text">Sedang membuka link Download....</h5>
+		<div style="display: flex;justify-content: center">
+		
+		  <div class="preloader-wrapper big active">
+		    <div class="spinner-layer spinner-red-only">
+		      <div class="circle-clipper left">
+		        <div class="circle"></div>
+		      </div><div class="gap-patch">
+		        <div class="circle"></div>
+		      </div><div class="circle-clipper right">
+		        <div class="circle"></div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<p class="bold-text center-align">Atau Buka Manual Klik Di bawah ini</p>
+		<a id="downloadurl" target="_blank"
+        class=" center-align blue-text bold-text"
+		></a>
+	</div>
+</body>
+<script>
+	 window.onload = function() {
+        let download_filecode = Jejakmu_download()
+        const downloadLinkElement = document.getElementById('downloadurl');
+        let link_download = `${frame_domain}/d/${download_filecode.file_code}`
+		if (download_filecode.file_code) {
+			// Set href dengan file code dan tambahkan teks
+			downloadLinkElement.href = link_download;
+			downloadLinkElement.textContent = link_download;
+
+			window.location.href = link_download
+
+		} else {
+			// Jika URL tidak ada
+			alert("Link download tidak tersedia")
+			window.location.href = "index.html"
+
+		}
+    };
+</script>
+</html>
