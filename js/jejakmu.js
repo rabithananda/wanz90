@@ -1,6 +1,6 @@
 
 link_jejakmu = "https://jejakmu.com/YpjG5y3"
-maximum_nonton = 65
+maximum_nonton = 45
 localstorage_name = 'bokepcounter'
 
 link_download_jejakmu = "https://jejakmu.com/BMg2"
