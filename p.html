@@ -11,7 +11,6 @@
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-   <script src="js/jejakmu.js"></script>
 
 </head>
 <body>
@@ -40,7 +39,6 @@
   >Video tersimpan</a>
 </div>
 
-<div id="jejakmucounter"></div>
 
 
   <div id="loadingframe" style="display: block;">
@@ -62,7 +60,15 @@
     >Download Video </a>
     <p class="center-align bold-text red-text">Lewatin Iklan shortlink kalo mau Download Video</p>
 
-    <div id="jejakdownload"></div>
+    <a 
+    target="_blank"
+    style="width: 100%" 
+    class="btn waves waves-effect purple bold-text" 
+     id="downloadseribu">Download Tanpa Iklan Bayar 1000</a>
+
+    <p class="center-align bold-text purple-text">
+      Chat Admin Jika Pembayaran Link Error , di tombol Request
+    </p>
   
   </div>
 
@@ -104,11 +110,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
 
-    window.onload = function() {
-        Jejakmu_check(); 
-        Jejakmu_download() 
-    };
-
+   
     function hideLoadingFrame() {
       const loadingFrame = document.getElementById('loadingframe');
       loadingFrame.style.display = 'none';
@@ -127,14 +129,20 @@
 
     // Mengganti src dari iframe dengan nilai id
     if (id) {
-      Jejakmu_counter(id)
-
 
       var iframe = document.getElementById('myIframe');
       var download_url = document.getElementById('urldownload');
+      var downloadseribu = document.getElementById('downloadseribu');
+
+
       iframe.src =  frame_domain + "/e/" + id;
-      download_url.href = shortlink_domain + shortlink_token + shortlink_tujuan +  frame_domain + "/d/" + id;
+
+      let down_url = frame_domain + "/d/" + id
+      download_url.href = shortlink_domain + shortlink_token + shortlink_tujuan + down_url ;
+
+      downloadseribu.href = `${midtrans_payment}?finish_url=${encodeURIComponent(down_url)}&gross_amount=1000`
     }
+
 
       const apiUrl = 'https://doodapi.com/api/file/list';
 

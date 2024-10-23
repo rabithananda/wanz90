@@ -29,6 +29,9 @@
      <a href="index.html"
   class="btn waves waves-effect pink" 
   >kembali</a>
+  <a href="simpan.html"
+  class="btn waves waves-effect blue" 
+  >Tersimpan</a>
  
   </div>
 
@@ -144,8 +147,9 @@
                          <span class="bold-text">${formattedDate}</span>
                          <br/>
                          <div 
-                         style="margin-top:20px;"
+                         style="display:flex;justify-content:space-between"
                          >
+                         <button onclick="savelocal('${encodeURIComponent(JSON.stringify(file))}')" class="btn waves waves-effect blue">Simpan</button>
                            <a class="btn waves waves-effect pink"
                            target="_blank"
                            href="${'/p.html?id=' + file.file_code}"
