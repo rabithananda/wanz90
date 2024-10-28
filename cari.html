@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-    <h6 style="font-weight: bold;text-align: center;">Sedang Mencari Video.....</h6>
+    <h6 style="font-weight: bold;text-align: center;">Sedang Mencari Video... <br>Refresh web kalo lama</h6>
   </div>
 
   
@@ -140,7 +140,7 @@
                     <div class="container">
                       <span class="pink-text darken-3 bold-text">${truncateText(result.title,40)}</span>
                     </div>
-                    <div style="display:flex;justify-content:end;margin:5px">
+                    <div style="display:flex;justify-content:space-between;margin:5px">
                       <button onclick="savelocal('${encodeURIComponent(JSON.stringify(result))}')" class="btn waves waves-effect blue">Simpan</button>
                
                       <button onclick="openvideo('${result.file_code}')" class="btn waves waves-effect pink">Nonton</button>
