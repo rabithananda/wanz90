@@ -60,13 +60,13 @@
       >cara nonton: </span>
       pastikan lu pake Chrome . jangan nonton di browser laen , facebook atau yg laen laen . copas link ke chrome nonton di chrome . kalo udah di chrome. cara nonton nya setiap lu play video kalo kebuka web iklan lu back aja . Tombol back dari hp lu biar balik lagi ke web b0cep ini lagi . begitu trus sampe lu tonton . 
     </p>
-    <!-- <a  target="_blank" id="urldownload"
+   <a  target="_blank" id="urldownload"
     style="width:100%" 
     class="btn waves waves-effect pink bold-text" 
     >Download Video </a>
     <p class="center-align bold-text red-text">Lewatin Iklan shortlink kalo mau Download Video</p>
- -->
-    <a 
+ 
+    <!-- <a 
     target="_blank"
     style="width: 100%" 
     class="btn waves waves-effect purple bold-text" 
@@ -75,7 +75,7 @@
     <p class="center-align bold-text pink-text">
       Chat Admin Jika Pembayaran Link Error , di tombol Request
     </p>
-  
+   -->
   </div>
 
 
@@ -137,16 +137,16 @@
     if (id) {
 
       var iframe = document.getElementById('myIframe');
-      // var download_url = document.getElementById('urldownload');
-      var downloadseribu = document.getElementById('downloadseribu');
+      var download_url = document.getElementById('urldownload');
+      // var downloadseribu = document.getElementById('downloadseribu');
 
 
       iframe.src =  frame_domain + "/e/" + id;
 
       let down_url = frame_domain + "/d/" + id
-      // download_url.href = shortlink_domain + shortlink_token + shortlink_tujuan + down_url ;
+      download_url.href = shortlink_domain + shortlink_token + shortlink_tujuan + down_url ;
 
-      downloadseribu.href = `${midtrans_payment}?finish_url=${encodeURIComponent(down_url)}&gross_amount=1000`
+      // downloadseribu.href = `${midtrans_payment}?finish_url=${encodeURIComponent(down_url)}&gross_amount=1000`
     }
 
 
